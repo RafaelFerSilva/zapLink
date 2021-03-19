@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard">
     <div class="container">
-      <h1>Seu Gerenciador de Contatos</h1>
+      <h1 class="title is-4">Seu Gerenciador de Contatos</h1>
 
       <div class="columns">
         <div
@@ -15,8 +15,8 @@
                 <div class="media-left">
                   <figure class="image is-48x48">
                     <img
-                      src="https://bulma.io/images/placeholders/96x96.png"
-                      alt="Placeholder image"
+                      src="../assets/whatsapp.svg"
+                      alt="Logo WhatasApp"
                     />
                   </figure>
                 </div>
