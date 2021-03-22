@@ -7,6 +7,9 @@ import 'buefy/dist/buefy.css'
 
 Vue.use(Buefy)
 
+window.axios = require('axios')
+window.axios.defaults.baseURL = 'http://localhost:3000'
+
 Vue.config.productionTip = false
 
 new Vue({
