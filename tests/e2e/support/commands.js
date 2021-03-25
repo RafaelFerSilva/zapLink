@@ -23,3 +23,58 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add("addContact", (contact) => {
+  cy.get('[data-testid="add_contact_button"]').click();
+
+  if (contact.name) cy.get('[data-testid="form_name"]').type(contact.name);
+  if (contact.number)
+    cy.get('[data-testid="form_number"]').type(contact.number);
+  if (contact.description)
+    cy.get('[data-testid="form_description"]').type(contact.description);
+
+  cy.get('[data-testId="form_btn_cadastrar"]').click();
+});
+
+Cypress.Commands.add("contactCard", () => {
+  return cy.get('[data-testid="contact_card"]');
+});
+
+Cypress.Commands.add("cardName", (contact) => {
+  return cy.get(`[data-testid="contact_card_name_${contact}"]`);
+});
+
+Cypress.Commands.add("cardNumber", (contact) => {
+  return cy.get(`[data-testid="contact_card_number_${contact}"]`);
+});
+
+Cypress.Commands.add("cardDescription", (contact) => {
+  return cy.get(`[data-testid="contact_card_description_${contact}"]`);
+});
+
+Cypress.Commands.add("cardWasAdded", (contact) => {
+  cy.get('[data-testid="contact_card"]');
+  cy.get(`[data-testid="contact_card_name_${contact.name}"]`).should(
+    "have.text",
+    contact.name
+  );
+  cy.get(`[data-testid="contact_card_number_${contact.number}"]`).should(
+    "have.text",
+    contact.number
+  );
+  cy.get(
+    `[data-testid="contact_card_description_${contact.description}"]`
+  ).contains(contact.description);
+});
+
+Cypress.Commands.add("nameErrorNotification", () => {
+  return cy.get('[data-testId="name_error"]');
+});
+
+Cypress.Commands.add("numberErrorNotification", () => {
+  return cy.get('[data-testId="number_error"]');
+});
+
+Cypress.Commands.add("descriptionErrorNotification", () => {
+  return cy.get('[data-testId="description_error"]');
+});
