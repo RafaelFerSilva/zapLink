@@ -24,6 +24,10 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
+Cypress.Commands.add("dash", () => {
+  cy.visit('/dashboard')
+})
+
 Cypress.Commands.add("addContact", (contact) => {
   cy.get('[data-testid="add_contact_button"]').click();
 
@@ -35,6 +39,16 @@ Cypress.Commands.add("addContact", (contact) => {
 
   cy.get('[data-testId="form_btn_cadastrar"]').click();
 });
+
+Cypress.Commands.add("searchContact", (number) => {
+  cy.get('.level-right input').type(number)
+  cy.get('.level-right button.is-primary').click()
+});
+
+Cypress.Commands.add("contactItem", () => {
+  return cy.get('.card');
+});
+
 
 Cypress.Commands.add("contactCard", () => {
   return cy.get('[data-testid="contact_card"]');
