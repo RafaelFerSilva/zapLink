@@ -81,6 +81,14 @@ Cypress.Commands.add("cardWasAdded", (contact) => {
   ).contains(contact.description);
 });
 
+Cypress.Commands.add("getContact", (target) => {
+  return cy.contains('.card', target);
+});
+
+Cypress.Commands.add("removeContact", (target) => {
+  cy.getContact(target).find('.btn-remove').click()
+})
+
 Cypress.Commands.add("nameErrorNotification", () => {
   return cy.get('[data-testId="name_error"]');
 });
